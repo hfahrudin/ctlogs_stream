@@ -54,6 +54,18 @@ The system operates in a producer-consumer model using Python's `multiprocessing
 *   **Containerization:**
     *   **Docker / Docker Compose:** Used to containerize and orchestrate ClickHouse, Grafana, Kafka, and Zookeeper services.
 
+## Datastream Rate Limiting Strategy
+
+To ensure stable operation and prevent overloading external CT log servers or internal processing capabilities, this project employs a datastream rate limiting strategy, primarily on the producer side (`CTlogsStream` in `stream.py`). This strategy helps maintain a healthy balance between data ingestion speed and system resources.
+
+### Producer-side Rate Limiting (Concurrency Control)
+
+The `CTlogsStream` utilizes a dynamic concurrency control mechanism to limit the rate at which new CT log entries are fetched:
+*   **Staggered Worker Launch:** New worker threads, responsible for fetching batches of CT logs, are launched with a calculated delay (`time.sleep(stagger)`). This `stagger` value is dynamically adjusted based on the number of currently active workers.
+*   **Dynamic Staggering:** As the number of active workers increases, the delay before launching a new worker also increases. This prevents a sudden burst of requests to the CT log server and ensures that the system doesn't create more fetching threads than it can efficiently manage, thereby regulating the overall data ingestion rate.
+
+This approach effectively limits the upstream pull rate, preventing potential resource exhaustion on the CT log source and ensuring that the `multiprocessing.Queue` (in-memory buffer) and downstream consumers have sufficient capacity to handle the incoming data without being overwhelmed.
+
 ## Setup and Running
 
 ## Security Considerations
