@@ -1,0 +1,5 @@
+kafka-python
+confluent-kafka
+clickhouse_connect
+crypto
+cryptography
