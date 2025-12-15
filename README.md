@@ -1,6 +1,6 @@
 # CT Logs Stream Processor
 
-This repository contains a system designed to fetch, process, and store Certificate Transparency (CT) logs. It ingests CT log entries, extracts relevant certificate information, and stores it in a ClickHouse database for analysis and monitoring.Overcomes stream rate limits by implementing adaptive worker staggering, optimizing request timing for peak ingestion speed.
+This repository contains a system designed to fetch, process, and store Certificate Transparency (CT) logs. It ingests CT log entries, extracts relevant certificate information, and stores it in a ClickHouse database for analysis and monitoring. Overcomes stream rate limits by implementing adaptive worker staggering, optimizing request timing for peak ingestion speed.
 
 ## How it Works
 
