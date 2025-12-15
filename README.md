@@ -1,6 +1,6 @@
 # CT Logs Stream Processor
 
-This repository contains a system designed to fetch, process, and store Certificate Transparency (CT) logs. It ingests CT log entries, extracts relevant certificate information, and stores it in a ClickHouse database for analysis and monitoring.
+This repository contains a system designed to fetch, process, and store Certificate Transparency (CT) logs. It ingests CT log entries, extracts relevant certificate information, and stores it in a ClickHouse database for analysis and monitoring.Overcomes stream rate limits by implementing adaptive worker staggering, optimizing request timing for peak ingestion speed.
 
 ## How it Works
 
@@ -68,7 +68,7 @@ This approach effectively limits the upstream pull rate, preventing potential re
 
 ## Setup and Running
 
-## Security Considerations
+### Security Considerations
 
 It is highly recommended that you change any default or sample sensitive information, such as passwords, before deploying this application in a production environment.
 
@@ -80,10 +80,6 @@ It is highly recommended that you change any default or sample sensitive informa
     *   **Action:** Modify the `GF_SECURITY_ADMIN_PASSWORD` environment variable in `docker-compose.yml`.
 
 Always ensure that secrets and sensitive configurations are handled securely, especially in production deployments.
-
-## Setup and Running
-
-Follow these steps to set up and run the CT Logs Stream Processor:
 
 ### 1. Prerequisites
 
